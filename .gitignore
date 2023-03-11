@@ -110,6 +110,14 @@ ENV/
 env.bak/
 venv.bak/
 
+idea
+idea/
+idea/workspace.xml
+.idea/workspace.xml
+.idea/
+.idea
+workspace.xml
+
 # Spyder project settings
 .spyderproject
 .spyproject
