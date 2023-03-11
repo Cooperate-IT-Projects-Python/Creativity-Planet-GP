@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'indexApp.apps.IndexappConfig',
     'profilesApp.apps.ProfilesappConfig',
     'communityApp.apps.CommunityappConfig',
+    'campApp.apps.CampappConfig',
 ]
 
 MIDDLEWARE = [
