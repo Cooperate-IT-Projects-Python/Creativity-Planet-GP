@@ -1,0 +1,78 @@
+
+{
+  "app_title": "title",
+  "language": "language",
+  "packages":"Packages",
+  "camps":"Camps",
+  "home": "Home",
+  "about": "About",
+  "store": "Store",
+  "community": "Community",
+  "registration":"ٌRegister",
+  "login": "Log In",
+  "aboutus":"About US",
+  "about_title":"An integrated community for you and your child",
+  "Camps":"Our Camps",
+  "campstitle":"Our goal in the camp is to discover children's passion by introducing them to different fields",
+  "team":"Our Team ",
+  "contact":" Contact Us"
+  ,"contact us title":"You can contact us for any questions or suggestions"
+  ,"address":"Address"
+  ,"address title":"Egypt - Giza - Dokki"
+  ,"email":" Email"
+  ,"phone":"phone "
+  ,"full name":"Full Bame "
+  ,"subject":"Subject "
+  ,"leave a message":"leave a message"
+  ,"send":"send "
+  ,"subscribe":"subscribe "
+  ,"welcome to our academy":"welcome to our academy"
+  ,"our academy title":"Innovation Planet Academy"
+  ,"Book now":"Book now",
+  "Our advantages":"Our advantages",
+
+  "first-bullet-point": "Integrated community for you and your child",
+  "second-bullet-point": "The first comprehensive educational platform for children and mothers",
+  "third-bullet-point": "We work with the STEAM education system",
+  "fourth-bullet-point": "We discover your child's passion and develop their abilities",
+  "fifth-bullet-point": "Our experience dates back to 2019",
+  "sixth-bullet-point": "18k followers",
+  "seventh-bullet-point": "A system based on the practical application of knowledge and the integration of education with life",
+  "eighth-bullet-point": "Based on the integration and interconnection of different sciences",
+  "ninth-bullet-point": "Full cooperation between teachers in setting the methodological foundations",
+  "tenth-bullet-point": "Lecturers are professionally trained on the STEAM education system"
+, "parent reviews subtitle": "Parent Reviews",
+"parent reviews title": "With Their Children's Engagement in Camps",
+"our camps subtitle": "Our Camps",
+    "our camps title": "Our goal for the camp is to discover children's passions through exposure to different fields"
+,"newsletter title": "Newsletter - Stay Up to Date with the Latest Updates",
+"enter email placeholder": "Enter your email address",
+"about us": "About Us",
+    "terms and conditions": "Terms and Conditions",
+    "privacy policy": "Privacy Policy",
+    "reviews": "Reviews",
+    "contact us": "Contact Us",
+    "happy kids": "Happy Kids"
+,
+"categories title": "Categories",
+"about academy": "About the Academy",
+"our community": "Our Community",
+"innovative planet": "Innovative Planet",
+"pricing subtitle": "OUR PRICING",
+"pricing title": "Pricing & Packages",
+"courses subtitle": "COURSES",
+"courses title": "Browse Our Online Courses",
+"questions title": "Have a Question?",
+"questions address": "Egypt - Giza - Dokki",
+"questions phone": "+2 392 3929 210",
+"questions email": "info@yourdomain.com",
+"recent post": "Recent Post",
+"mission title": "Our Mission",
+"mission": "مهمتنا",
+"missionDesc": "أكاديمية متخصصة في تعليم الأطفال العلوم والفنون المختلفة بطريقة عملية بإستخدام نظام STEAM التعليمي واكتشاف شغفهم وتنميته مهاراتهم تهيئة عقل الأطفال للتعامل مع العلوم والفنون المعاصرة  وكذلك الاستعداد والتأهيل للالتحاق بالوظائف المستقبلية",
+"vision": "رؤيتنا",
+"visionDesc": "نسعى إلى تكوين نظام تعليمي متكامل للأطفال وبيئة آمنه للأمهات والأطفال",
+"goal": "هدفنا",
+"goalDesc": "هدفنا بناء منصة تعليمية متكاملة للأمهات والأطفال في كل أنحاء الوطن العربي تكون بمثابة مجتمع لهم",
+"join us":"join Now"
+}
