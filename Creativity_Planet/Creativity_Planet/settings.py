@@ -17,6 +17,8 @@ from dotenv import load_dotenv
 
 load_dotenv()  # loads the configs from .env
 POSTGRES_PASSWORD = str(os.getenv('POSTGRES_PASSWORD'))
+HOST_EMAIL = str(os.getenv('HOST_EMAIL'))
+HOST_APP_PASS = str(os.getenv('HOST_APP_PASS'))
 
 
 REST_FRAMEWORK = {}
@@ -137,3 +139,35 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'profilesApp.CustomUser'
+
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'home'
+
+
+# Emailing settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_FROM = HOST_EMAIL
+EMAIL_HOST_USER = HOST_EMAIL
+EMAIL_HOST_PASSWORD = HOST_APP_PASS 
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+PASSWORD_RESET_TIMEOUT = 14400
+
+# Authentication settings
+AUTHENTICATION_BACKENDS = (
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'PAGE_SIZE': 10
+}
