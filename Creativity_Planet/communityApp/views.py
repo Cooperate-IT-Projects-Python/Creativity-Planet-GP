@@ -3,6 +3,7 @@ from .models import Posts
 from .serializers import *
 from rest_framework import generics, mixins
 from rest_framework.authentication import TokenAuthentication
+from django.db.models import Count
 
 """
 @ PostsGetSet , PostGETUPDEL Are Created USing generics API
@@ -11,7 +12,7 @@ from rest_framework.authentication import TokenAuthentication
 """
 
 
-# -------------------- POSTS --------------------
+# /////////////////////////// POSTS ///////////////////////////
 
 # -------------------- GET ALL POSTS AND SET POST --------------------
 class PostsGetSet(generics.ListCreateAPIView):
@@ -44,8 +45,9 @@ class PostPageGet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.Des
     def delete(self, request, pk):
         return self.destroy(request)
 
+    # --------------------GET Top 5 Posts --------------------
 
-# GET Top 2 Posts
+
 class TopPosts(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Posts.objects.all().order_by("-rate_number")[:5]
 
@@ -54,8 +56,46 @@ class TopPosts(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericA
     def get(self, request):
         return self.list(request)
 
+    # --------------------GET Hot 5 Posts --------------------GET
 
-# -------------------- COMMENT  --------------------
+
+class HotPosts(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+    def num_comments(self):
+        num_comments = Comment.objects.filter(post=self.id).count()
+        return num_comments
+
+    queryset = Posts.objects.all() \
+                   .annotate(num_comments=Count('comment')) \
+                   .order_by('-num_comments')[:5]
+    serializer_class = PostsSerializer
+
+    def get(self, request):
+        return self.list(request)
+
+    # -------------------- Rate Post --------------------GET
+
+
+class RatePost(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+    queryset = PostRates.objects.all()
+    serializer_class = RateSerializer
+
+    def post(self, request):
+        return self.create(request)
+
+    # -------------------- User Favorites--------------------GET
+
+
+class SetUserFavorites(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+    queryset = UserFavorites.objects.all()
+    serializer_class = UserFavoritesSerializer
+
+    def post(self, request):
+        return self.create(request)
+
+    # -------------------- User Favorites--------------------GET
+
+
+# /////////////////////////// COMMENT  ///////////////////////////
 
 # -------------------- SET COMMENT  --------------------
 
@@ -83,6 +123,8 @@ class CommentUpDel(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.De
     def delete(self, request, pk):
         return self.destroy(request)
 
+
+# /////////////////////////// REPLAY ///////////////////////////
 
 # -------------------- SET REPLAY  --------------------
 

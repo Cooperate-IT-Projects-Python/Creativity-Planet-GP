@@ -10,6 +10,8 @@ class UserSerializerField(serializers.ModelSerializer):
         fields = ["name"]
 
 
+# ///////////////////// POSTS SERIALIZER /////////////////////
+
 # -------------------- POST SERIALIZER --------------------
 class PostsSerializer(serializers.ModelSerializer):
     # Tags
@@ -31,7 +33,22 @@ class PostsSerializer(serializers.ModelSerializer):
         model = Posts
         fields = ['pk', "title", "content", "rate_number", "tags", "created_at", "main_Image",
                   "post_owner", "Num_comments", "user"]
-        read_only_fields = ('user', 'Num_comments', "post_owner")
+        read_only_fields = ('Num_comments', "post_owner")
+
+
+# -------------------- POST Rate SERIALIZER --------------------
+
+class RateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PostRates
+        fields = '__all__'
+
+
+# -------------------- User FavoritesSerializer SERIALIZER --------------------
+class UserFavoritesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserFavorites
+        fields = '__all__'
 
 
 # -------------------- END POST SERIALIZER --------------------
