@@ -1,6 +1,8 @@
 from django.db import models
 from datetime import datetime
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.conf import settings
+
 
 
 # POST -  POST Comments - POST REPORTS - POST RATES - TAGS -
@@ -19,7 +21,9 @@ class Posts(models.Model):
     created_at = models.DateTimeField(default=datetime.now, blank=True)
     selected_at_by_admin = models.BooleanField(default=False)
     main_Image = models.ImageField(upload_to='media/posts/%y/%m/%d', null=False, blank=False)
-    user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='posts')
+    #user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='posts')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='posts')
+
 
     def __str__(self):
         return self.title
@@ -59,7 +63,9 @@ class PostReports(models.Model):
     reason = models.TextField(null=False, blank=False)
     created_at = models.DateTimeField(default=datetime.now, blank=True)
     post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='postReports')
-    user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='postReports')
+    #user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='postReports')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='postReports')
+
 
     def __str__(self):
         return f"report {self.id} on comment {self.post} from {self.user}"
@@ -70,7 +76,9 @@ class Comment(models.Model):
     created_at = models.DateTimeField(default=datetime.now, blank=True)
     is_answer = models.BooleanField(default=False)
     post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='comment')
-    user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='comment')
+    # user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='comment')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='comment')
+
 
     def __str__(self):
         return f"comment {self.id} on {self.post.title} from {self.user}"
@@ -80,7 +88,9 @@ class CommentReplays(models.Model):
     replay = models.TextField(null=False, blank=False)
     created_at = models.DateTimeField(default=datetime.now, blank=True)
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name='commentReplays')
-    user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='commentReplays')
+    # user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='commentReplays')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='commentReplays')
+
 
     def __str__(self):
         return f"Comment-report {self.id} on comment {self.comment} reported by {self.user}"
@@ -90,7 +100,9 @@ class CommentReports(models.Model):
     reason = models.TextField(null=False, blank=False)
     created_at = models.DateTimeField(default=datetime.now, blank=True)
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name='commentReports')
-    user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='commentReports')
+    # user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='commentReports')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='commentReports')
+
 
     def __str__(self):
         return f"Comment-report {self.id} on comment {self.comment} reported by {self.user}"
@@ -100,7 +112,9 @@ class ReplayReports(models.Model):
     reason = models.TextField(null=False, blank=False)
     created_at = models.DateTimeField(default=datetime.now, blank=True)
     replay = models.ForeignKey(CommentReplays, on_delete=models.CASCADE, related_name='replayReports')
-    user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='replayReports')
+    # user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='replayReports')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='replayReports')
+
 
     def __str__(self):
         return f"Comment-report {self.id} on comment {self.comment} reported by {self.user}"
@@ -108,7 +122,9 @@ class ReplayReports(models.Model):
 
 class UserFavorites(models.Model):
     post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='userFavorites')
-    user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='userFavorites')
+    # user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='userFavorites')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='userFavorites')
+
 
     def __str__(self):
         return f"favorite {self.id} on {self.post} from {self.user}"
