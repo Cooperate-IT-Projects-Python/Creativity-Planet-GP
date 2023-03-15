@@ -1,4 +1,6 @@
 from rest_framework import serializers
+from django.conf import settings
+from profilesApp.models import CustomUser
 from .models import *
 
 
@@ -6,8 +8,8 @@ from .models import *
 
 class UserSerializerField(serializers.ModelSerializer):
     class Meta:
-        model = UserTest
-        fields = ["name"]
+        model = CustomUser
+        fields = ["username"]
 
 
 # -------------------- POST SERIALIZER --------------------
@@ -18,7 +20,7 @@ class PostsSerializer(serializers.ModelSerializer):
     post_owner = serializers.SerializerMethodField('get_extra_fielduser', read_only=True)
 
     def get_extra_fielduser(self, member):
-        return UserSerializerField(UserTest.objects.get(pk=member.user.id)).data
+        return UserSerializerField(CustomUser.objects.get(pk=member.user.id)).data
 
     # NUM of  COMMENTS
     Num_comments = serializers.SerializerMethodField('get_extra_field', read_only=True)

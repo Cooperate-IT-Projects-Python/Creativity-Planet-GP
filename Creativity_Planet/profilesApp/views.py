@@ -11,6 +11,10 @@ from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMessage
 from django.db.models.query_utils import Q
 from .tokens import account_activation_token
+from communityApp.models import Posts
+from communityApp.serializers import PostsSerializer
+
+
 
 from rest_framework.decorators import api_view
 from rest_framework import status
@@ -94,6 +98,19 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        return Response('account activated')
+        c
     else:
         return Response('activation failed')
+
+@api_view(['GET'])
+def user_profile(request):
+    user = request.user
+    posts = Posts.objects.filter(user=user)
+    serial = PostsSerializer(posts,many=True)
+
+    return Response(serial.data)
+
+# class PostsGetSet(generics.ListCreateAPIView):
+#     user = request.user
+#     queryset = Posts.objects.filter(user=user)
+#     serializer_class = PostsSerializer
