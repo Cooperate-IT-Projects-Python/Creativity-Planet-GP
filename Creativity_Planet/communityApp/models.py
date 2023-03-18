@@ -13,7 +13,7 @@ class UserTest(models.Model):
 
 
 class Posts(models.Model):
-    title = models.CharField(max_length=200, unique=True)
+    title = models.CharField(max_length=200)
     content = models.TextField()
     rate_number = models.IntegerField(default=0, validators=[MinValueValidator(0)])
     created_at = models.DateTimeField(default=datetime.now, blank=True)
@@ -38,7 +38,7 @@ class PostImages(models.Model):
     post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='postImages')
 
     def __str__(self):
-        return self.post.image
+        return f"Image {self.id} For {self.post.title}"
 
 
 class PostRates(models.Model):
