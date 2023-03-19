@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'communityApp.apps.CommunityappConfig',
     'campApp.apps.CampappConfig',
     'rest_framework',
+    'django_rest_passwordreset',
 ]
 
 MIDDLEWARE = [
