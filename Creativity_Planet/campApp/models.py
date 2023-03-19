@@ -5,6 +5,12 @@ from django.utils.timezone import now
 from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator, MinValueValidator
 from communityApp.models import UserTest
+# QRCODE
+import qrcode
+from PIL import Image, ImageDraw
+from io import BytesIO
+from django.core.files import File
+import random
 
 
 # Camp_Category
@@ -52,6 +58,7 @@ class ActiveCamps(models.Model):
     offer = models.CharField(max_length=200)
     location = models.ForeignKey(CampLocation, on_delete=models.CASCADE, related_name='campCategory', null=False,
                                  blank=False)
+    finished = models.BooleanField(default=False)
 
     def clean(self):
         if self.end_date < self.start_date:
@@ -89,10 +96,77 @@ class CampsEnrollment(models.Model):
 
     def clean(self):
         self.total_price = self.max_attendees * self.camp.price_per_child
+        self.camp.current_num_of_enrolment += self.max_attendees
+        self.camp.save()
         print(self.total_price)
         print(self.max_attendees)
         print(self.camp.price_per_child)
         super(CampsEnrollment, self).clean()
 
+    # class Meta:
+    #     unique_together = ('camp', 'user',)
+
     def __str__(self):
-        return f"{self.user.name} Enrolled {self.camp.title}"
+        return f"{self.user.name} Enrolled {self.camp.title} EnrollID {self.id}"
+
+
+# ////////// FINISHED CAMPS ///////////
+def no_future(value):
+    today = date.today()
+    if value > today:
+        raise ValidationError('This is  a Finished Camp Start Date Cannot be in the Future')
+
+
+class FinishedCamps(models.Model):
+    title = models.CharField(max_length=200, null=False, blank=False)
+    description = models.TextField(null=False, blank=False)
+    av_rate = models.FloatField(default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
+    created_at = models.DateTimeField(default=now, blank=True)
+    started_date = models.DateField(help_text="Enter the Start date of Camp It Must Be greater Less Today",
+                                    null=False,
+                                    blank=False, validators=[no_future])
+    ended_date = models.DateField(help_text="Enter the End date of Camp It Must Be less Than Start Date", null=False,
+                                  blank=False)
+    category = models.ForeignKey(CampCategory, on_delete=models.CASCADE, related_name='finishedCampCategory')
+    main_Image = models.ImageField(upload_to='media/activeCampsMain/%y/%m/%d')
+    numOfAttendee = models.IntegerField(default=1, validators=[MinValueValidator(1)])
+    duration = models.CharField(max_length=100, null=True, blank=True)
+    location = models.ForeignKey(CampLocation, on_delete=models.CASCADE, related_name='finishedCampCategory',
+                                 null=False,
+                                 blank=False)
+
+
+class FinishedCampImages(models.Model):
+    image = models.ImageField(upload_to='media/finishedCampsSub/%y/%m/%d', null=False, blank=False)
+    camp = models.ForeignKey(ActiveCamps, on_delete=models.CASCADE, related_name='finishedCampImages')
+
+    def __str__(self):
+        return f"Image {self.id} For {self.camp.title}"
+
+
+class FinishedCampVideos(models.Model):
+    url = models.CharField(max_length=300, null=False, blank=False)
+    camp = models.ForeignKey(ActiveCamps, on_delete=models.CASCADE, related_name='finishedCampVideo')
+
+    def __str__(self):
+        return f"Video {self.id} For {self.camp.title}"
+
+
+# QR MODEL
+class QrCode(models.Model):
+    url = models.URLField()
+    image = models.ImageField(upload_to='media/qrcods/%y/%m/%d', blank=True)
+
+    def __str__(self):
+        return f"QRCode {self.id} For {self.url} as Image {self.image}"
+
+    def save(self, *args, **kwargs):
+        qrcode_img = qrcode.make(self.url)
+        canvas = Image.new("RGB", (300, 300), "white")
+        draw = ImageDraw.Draw(canvas)
+        canvas.paste(qrcode_img)
+        buffer = BytesIO()
+        canvas.save(buffer, "PNG")
+        self.image.save(f'image{random.randint(0, 9999)}.png', File(buffer), save=False)
+        canvas.close()
+        super().save(*args, **kwargs)

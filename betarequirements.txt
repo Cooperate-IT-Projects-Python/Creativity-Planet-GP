@@ -9,3 +9,5 @@ social-auth-core
 django-sslserver
 six
 djangorestframework
+PIL
+qrcode
