@@ -4,6 +4,11 @@ from .serializers import *
 from rest_framework import generics, mixins
 from rest_framework.authentication import TokenAuthentication
 from django.db.models import Count
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from django.http import JsonResponse
+from rest_framework import status
+
 
 """
 @ PostsGetSet , PostGETUPDEL Are Created USing generics API
@@ -19,6 +24,30 @@ class PostsGetSet(generics.ListCreateAPIView):
     queryset = Posts.objects.all()
     serializer_class = PostsSerializer
     authentication_classes = [TokenAuthentication]
+
+    # --------------------Create POST --------------------
+
+
+@api_view(['POST'])
+def create_post(request):
+    created_post = SetPostSerializer(data=request.data)
+    try:
+        created_post.is_valid(raise_exception=True)
+        print("Valid")
+        created_post.save()
+        post = Posts.objects.filter(id=created_post.data["pk"]).first()
+        for tag in request.data["tags"]:
+            tag_obj = Tags()
+            tag_obj.name = tag.lower().strip(' \t\n\r')
+            tag_obj.post = post
+            tag_obj.save()
+        return JsonResponse(created_post.data,
+                            safe=False, status=status.HTTP_200_OK)
+        # return Response(created_post.data, status=status.HTTP_200_OK)
+    except ValueError:
+        print(created_post.errors)
+        return JsonResponse(status=status.HTTP_404_NOT_FOUND)
+        # return Response(status=status.HTTP_404_NOT_FOUND)
 
     # -------------------- POST GET UPDATE DELETE  --------------------
 

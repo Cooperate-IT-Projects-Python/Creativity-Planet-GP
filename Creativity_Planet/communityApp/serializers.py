@@ -36,6 +36,14 @@ class PostsSerializer(serializers.ModelSerializer):
         read_only_fields = ('Num_comments', "post_owner")
 
 
+# -------------------- POST SERIALIZER --------------------
+class SetPostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Posts
+        fields = ["pk", "title", "content", "tags", "main_Image", "user"]
+        read_only_fields = ("pk", "tags")
+
+
 # -------------------- POST Rate SERIALIZER --------------------
 
 class RateSerializer(serializers.ModelSerializer):

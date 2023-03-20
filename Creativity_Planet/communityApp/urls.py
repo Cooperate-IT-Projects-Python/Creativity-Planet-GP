@@ -5,6 +5,8 @@ urlpatterns = [
     # //// Posts API ////
     # Get All Posts generics
     path('posts/', views.PostsGetSet.as_view()),
+    # Create Post
+    path('createpost/', views.create_post),
     # Get Update Delete Post generics
     path('postgetupdel/<int:pk>', views.PostGETUPDEL.as_view()),
     # Top Post
