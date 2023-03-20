@@ -5,6 +5,8 @@ urlpatterns = [
     # /////// ACTIVE CAMPS /////////
     # Get All Active Camps generics
     path('getactivecamps/', views.ActiveCampsGetSet.as_view()),
+    # Get Active Camps By CATEGORY
+    path('getactivebycategory/<int:pk>', views.active_camps_by_category),
     # GET BEST ACTIVE CAMPS
     path('getbestactivecamps/', views.GetBestActiveCamps.as_view()),
     # GET SOON ACTIVE CAMPS

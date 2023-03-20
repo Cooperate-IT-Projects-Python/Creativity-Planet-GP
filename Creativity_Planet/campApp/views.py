@@ -8,6 +8,7 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from django.db.models import Q
+from django.http import JsonResponse
 
 from django.db.models import Count
 
@@ -38,6 +39,15 @@ class GetSoonActiveCamps(mixins.ListModelMixin, mixins.CreateModelMixin, generic
 
     def get(self, request):
         return self.list(request)
+
+
+# -------------- GET ACTIVE By Category CAMPs -----------
+@api_view(['GET'])
+def active_camps_by_category(request, pk):
+    queryset = ActiveCamps.objects.filter(category=pk).order_by('-start_date')
+    active_camps = ActiveCampsSerializer(queryset, many=True)
+    return JsonResponse(active_camps.data,
+                        safe=False, status=status.HTTP_200_OK)
 
 
 # /////////////// CHECKOUT ///////////////
