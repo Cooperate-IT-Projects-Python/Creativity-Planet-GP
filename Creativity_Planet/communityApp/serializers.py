@@ -37,6 +37,10 @@ class PostsSerializer(serializers.ModelSerializer):
 
 
 # -------------------- END POST SERIALIZER --------------------
+class UserFavoritesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserFavorites
+        fields = '__all__'
 
 
 # -------------------- Comment SERIALIZER --------------------

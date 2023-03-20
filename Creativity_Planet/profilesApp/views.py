@@ -11,8 +11,8 @@ from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMessage
 from django.db.models.query_utils import Q
 from .tokens import account_activation_token
-from communityApp.models import Posts
-from communityApp.serializers import PostsSerializer
+from communityApp.models import Posts,UserFavorites
+from communityApp.serializers import PostsSerializer,UserFavoritesSerializer
 from rest_framework import status
 from rest_framework import generics
 from rest_framework.response import Response
@@ -20,6 +20,7 @@ from django.contrib.auth.models import User
 from .serializers import ChangePasswordSerializer
 from rest_framework.permissions import IsAuthenticated  
 
+from django.views.decorators.csrf import csrf_exempt
 
 
 from rest_framework.decorators import api_view
@@ -67,7 +68,9 @@ def custom_login(request):
     else:
         return Response("error")
 
+
 @api_view(['POST'])
+@csrf_exempt
 def custom_logout(request):
     logout(request)
     return Response("logged out")
@@ -113,8 +116,21 @@ def user_profile(request):
     user = request.user
     posts = Posts.objects.filter(user=user)
     serial = PostsSerializer(posts,many=True)
+    favposts = UserFavorites.objects.filter(user=user)
+    # query= favposts.userFavorites.all()
+    print(favposts)
+    # print(query)
+    favserial = UserFavoritesSerializer(favposts,many=True)
 
-    return Response(serial.data)
+    return Response({"posts":serial.data,"favposts":favserial.data})
+
+@api_view(['POST'])
+def edit_user_profile(request):
+    user = request.user
+    user.first_name = request.POST['first_name']
+    user.last_name = request.POST['last_name']
+    user.save()
+    return Response("profile edited")
 
 # class PostsGetSet(generics.ListCreateAPIView):
 #     user = request.user
@@ -262,3 +278,4 @@ def passwordResetConfirm(request, uidb64, token):
 #             return Response(response)
 
 #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+

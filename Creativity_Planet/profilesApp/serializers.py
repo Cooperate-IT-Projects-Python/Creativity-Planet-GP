@@ -23,4 +23,8 @@ class ChangePasswordSerializer(serializers.Serializer):
     """
     password = serializers.CharField(max_length=100, write_only=True)
     def validate_password(self, password):
-        return make_password(password)      
+        return make_password(password)
+    
+    class Meta:
+        model = CustomUser
+        fields = ['password']      
