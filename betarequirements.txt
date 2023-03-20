@@ -11,3 +11,4 @@ six
 djangorestframework
 PIL
 qrcode
+django-cors-headers

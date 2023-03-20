@@ -16,9 +16,9 @@ class Posts(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
     rate_number = models.IntegerField(default=0, validators=[MinValueValidator(0)])
-    created_at = models.DateTimeField(default=datetime.now, blank=True)
+    created_at = models.DateTimeField(default=datetime.now, null=True, blank=True)
     selected_at_by_admin = models.BooleanField(default=False)
-    main_Image = models.ImageField(upload_to='media/posts/%y/%m/%d', null=False, blank=False)
+    main_Image = models.ImageField(upload_to='media/posts/%y/%m/%d', null=True, blank=True)
     user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='posts')
 
     def __str__(self):
