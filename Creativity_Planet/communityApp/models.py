@@ -55,6 +55,33 @@ class PostRates(models.Model):
         return f"rating {self.value} on {self.post.title} by {self.user} "
 
 
+class PostLikes(models.Model):
+    user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='postLikes')
+    post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='postLikes')
+    is_cleaned = False
+
+    # def clean(self):
+    #     if PostLikes.objects.filter(user=self.user, post=self.post):
+    #         raise Exception("Sorry, no numbers below zero")
+    #     self.is_cleaned = True
+
+    def save(self, *args, **kwargs):
+        if PostLikes.objects.filter(user=self.user, post=self.post).count():
+            return False
+        super().save(*args, **kwargs)
+        return True
+
+    def __str__(self):
+        return f"Like on {self.post.title} by {self.user} "
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['user', 'post'], name='Already Liked'
+            )
+        ]
+
+
 class PostReports(models.Model):
     reason = models.TextField(null=False, blank=False)
     created_at = models.DateTimeField(default=datetime.now, blank=True)

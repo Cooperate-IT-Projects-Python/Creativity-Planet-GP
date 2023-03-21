@@ -15,11 +15,15 @@ urlpatterns = [
     path('posthot/', views.HotPosts.as_view()),
     # Rate Post
     path('ratepost/', views.RatePost.as_view()),
+    # Like Post
+    path('likepost/<int:pk>', views.post_likes),
     # Set User Favorites (Follow)
     path('postfollow/', views.SetUserFavorites.as_view()),
     # Post Page
     path('postpage/<int:pk>', views.PostPageGet.as_view()),
     # //// Comments API ////
+    # CREATE COMMENT
+    path('createcomment/<int:pk>', views.set_comment),
     # Comment Set
     path('setcomment/', views.CommentSet.as_view()),
     # Comment Up del

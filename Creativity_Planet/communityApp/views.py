@@ -8,7 +8,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.http import JsonResponse
 from rest_framework import status
-
+from django.shortcuts import get_object_or_404
 
 """
 @ PostsGetSet , PostGETUPDEL Are Created USing generics API
@@ -111,6 +111,27 @@ class RatePost(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericA
     def post(self, request):
         return self.create(request)
 
+    # -------------------- Like Post --------------------GET
+
+
+@api_view(['POST'])
+def post_likes(request, pk):
+    post = Posts.objects.filter(pk=pk).first()
+    user = UserTest.objects.filter(pk=request.data["user"]).first()
+    if not post:
+        return JsonResponse("error: No Post With This id", status=status.HTTP_409_CONFLICT, safe=False)
+    if not user:
+        return JsonResponse("error: No USER With This id", status=status.HTTP_409_CONFLICT, safe=False)
+    like_post = PostLikes()
+    like_post.post = post
+    like_post.user = user
+
+    if like_post.save():
+        like_post_ser = LikesSerializer(like_post)
+        return JsonResponse(like_post_ser.data,
+                            safe=False, status=status.HTTP_200_OK)
+    return JsonResponse("error: This User Already Liked this Post", status=status.HTTP_409_CONFLICT, safe=False)
+
     # -------------------- User Favorites--------------------GET
 
 
@@ -125,6 +146,26 @@ class SetUserFavorites(mixins.ListModelMixin, mixins.CreateModelMixin, generics.
 
 
 # /////////////////////////// COMMENT  ///////////////////////////
+    # -------------------- SET COMMENT  --------------------GET
+
+@api_view(['POST'])
+def set_comment(request, pk):
+    post = Posts.objects.filter(pk=pk).first()
+    user = UserTest.objects.filter(pk=request.data["user"]).first()
+    comment = request.data["comment"]
+    if not post:
+        return JsonResponse("error: No Post With This id", status=status.HTTP_409_CONFLICT, safe=False)
+    if not user:
+        return JsonResponse("error: No USER With This id", status=status.HTTP_409_CONFLICT, safe=False)
+    post_comment = Comment()
+    post_comment.post = post
+    post_comment.user = user
+    post_comment.comment = comment
+    post_comment.save()
+    post_comment_ser = LikesSerializer(post_comment)
+    return JsonResponse(post_comment_ser.data,
+                        safe=False, status=status.HTTP_200_OK)
+
 
 # -------------------- SET COMMENT  --------------------
 

@@ -18,22 +18,28 @@ class PostsSerializer(serializers.ModelSerializer):
     tags = serializers.SlugRelatedField(many=True, slug_field='name', queryset=Tags.objects.all())
     # User
     post_owner = serializers.SerializerMethodField('get_extra_fielduser', read_only=True)
+    # Liks
+    num_likes = serializers.SerializerMethodField('get_extra_field_like', read_only=True)
 
     def get_extra_fielduser(self, member):
         return UserSerializerField(UserTest.objects.get(pk=member.user.id)).data
 
     # NUM of  COMMENTS
-    Num_comments = serializers.SerializerMethodField('get_extra_field', read_only=True)
+    num_comments = serializers.SerializerMethodField('get_extra_field', read_only=True)
 
     def get_extra_field(self, member):
         comments_numer = Comment.objects.filter(post=member.pk).count()
         return comments_numer
 
+    def get_extra_field_like(self, member):
+        likes_numer = PostLikes.objects.filter(post=member.pk).count()
+        return likes_numer
+
     class Meta:
         model = Posts
         fields = ['pk', "title", "content", "rate_number", "tags", "created_at", "main_Image",
-                  "post_owner", "Num_comments", "user"]
-        read_only_fields = ('Num_comments', "post_owner")
+                  "post_owner", "num_comments", "num_likes", "user"]
+        read_only_fields = ('Num_comments', "post_owner", "tags")
 
 
 # -------------------- POST SERIALIZER --------------------
@@ -49,6 +55,13 @@ class SetPostSerializer(serializers.ModelSerializer):
 class RateSerializer(serializers.ModelSerializer):
     class Meta:
         model = PostRates
+        fields = '__all__'
+
+
+# -------------------- POST LIKES SERIALIZER --------------------
+class LikesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PostLikes
         fields = '__all__'
 
 
