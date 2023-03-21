@@ -74,6 +74,7 @@ def checkout_method(request):
         ###
         # QRCode Generator
         # qr_image = qrcode_generator("Ahmed,Ali,Hassan")
+        # qrcode_generator(camp_enrollment.data)
         #
         ###
         return Response(camp_enrollment.data, status=status.HTTP_200_OK)

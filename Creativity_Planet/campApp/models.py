@@ -103,8 +103,8 @@ class CampsEnrollment(models.Model):
         print(self.camp.price_per_child)
         super(CampsEnrollment, self).clean()
 
-    # class Meta:
-    #     unique_together = ('camp', 'user',)
+    class Meta:
+        unique_together = ('camp', 'user',)
 
     def __str__(self):
         return f"{self.user.name} Enrolled {self.camp.title} EnrollID {self.id}"
