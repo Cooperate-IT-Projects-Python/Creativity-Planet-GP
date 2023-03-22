@@ -5,6 +5,8 @@ urlpatterns = [
     # //// Posts API ////
     # Get All Posts generics
     path('posts/', views.PostsGetSet.as_view()),
+    # Get All Posts WITH DETAILS
+    path('postswithdetails/', views.PostsDetailsSet.as_view()),
     # Create Post
     path('createpost/', views.create_post),
     # Get Update Delete Post generics
@@ -24,6 +26,8 @@ urlpatterns = [
     # //// Comments API ////
     # CREATE COMMENT
     path('createcomment/<int:pk>', views.set_comment),
+    # GET POST COMMENTS
+    path('postcomments/<int:pk>', views.post_comments),
     # Comment Set
     path('setcomment/', views.CommentSet.as_view()),
     # Comment Up del

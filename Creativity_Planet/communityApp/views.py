@@ -25,7 +25,16 @@ class PostsGetSet(generics.ListCreateAPIView):
     serializer_class = PostsSerializer
     authentication_classes = [TokenAuthentication]
 
-    # --------------------Create POST --------------------
+
+# -------------------- GET ALL POSTS WITH DETAILS  --------------------
+
+class PostsDetailsSet(generics.ListCreateAPIView):
+    queryset = Posts.objects.all()
+    serializer_class = PostPageDETAILSSerializer
+    authentication_classes = [TokenAuthentication]
+
+
+# --------------------Create POST --------------------
 
 
 @api_view(['POST'])
@@ -118,19 +127,19 @@ class RatePost(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericA
 def post_likes(request, pk):
     post = Posts.objects.filter(pk=pk).first()
     user = UserTest.objects.filter(pk=request.data["user"]).first()
+    value = request.data["value"]
     if not post:
         return JsonResponse("error: No Post With This id", status=status.HTTP_409_CONFLICT, safe=False)
     if not user:
         return JsonResponse("error: No USER With This id", status=status.HTTP_409_CONFLICT, safe=False)
-    like_post = PostLikes()
-    like_post.post = post
-    like_post.user = user
-
-    if like_post.save():
-        like_post_ser = LikesSerializer(like_post)
-        return JsonResponse(like_post_ser.data,
-                            safe=False, status=status.HTTP_200_OK)
-    return JsonResponse("error: This User Already Liked this Post", status=status.HTTP_409_CONFLICT, safe=False)
+    if value not in [1, 0, -1]:
+        return JsonResponse("error: value must be 1 or 0 or -1", status=status.HTTP_409_CONFLICT, safe=False)
+    like_post, _ = PostLikes.objects.get_or_create(post=post, user=user)
+    like_post.value = value
+    like_post.save()
+    like_post_ser = LikesSerializer(like_post)
+    return JsonResponse(like_post_ser.data,
+                        safe=False, status=status.HTTP_200_OK)
 
     # -------------------- User Favorites--------------------GET
 
@@ -146,7 +155,23 @@ class SetUserFavorites(mixins.ListModelMixin, mixins.CreateModelMixin, generics.
 
 
 # /////////////////////////// COMMENT  ///////////////////////////
-    # -------------------- SET COMMENT  --------------------GET
+# -------------------- GET POST COMMENTS  --------------------GET
+
+@api_view(['GET'])
+def post_comments(request, pk):
+    post = Posts.objects.filter(pk=pk).first()
+    if not post:
+        return JsonResponse("error: No Post With This id", status=status.HTTP_409_CONFLICT, safe=False)
+    comments = Comment.objects.filter(post=post)
+    if not comments:
+        return JsonResponse({"error": "This Post has no Comments"}, status=status.HTTP_404_NOT_FOUND, safe=False)
+
+    comments_ser = GetCommentSerializer(comments, many=True)
+    return JsonResponse(comments_ser.data,
+                        safe=False, status=status.HTTP_200_OK)
+
+
+# -------------------- SET COMMENT  --------------------GET
 
 @api_view(['POST'])
 def set_comment(request, pk):

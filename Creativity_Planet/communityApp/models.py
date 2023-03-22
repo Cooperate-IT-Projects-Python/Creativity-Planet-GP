@@ -7,6 +7,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 # COMMENT REPORTS - COMMENT REPLAYS - REPLAYS REPORTS
 class UserTest(models.Model):
     name = models.CharField(max_length=200, unique=True)
+    main = models.ImageField(upload_to='media/users/%y/%m/%d', null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -56,21 +57,29 @@ class PostRates(models.Model):
 
 
 class PostLikes(models.Model):
+    RATES_CHOICES = (
+        (-1, "Down"),
+        (0, "Hold"),
+        (1, "Up"),
+    )
     user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='postLikes')
     post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='postLikes')
-    is_cleaned = False
+    value = models.IntegerField(choices=RATES_CHOICES, default=0)
+
+    # is_cleaned = False
 
     # def clean(self):
     #     if PostLikes.objects.filter(user=self.user, post=self.post):
     #         raise Exception("Sorry, no numbers below zero")
     #     self.is_cleaned = True
 
-    def save(self, *args, **kwargs):
-        if PostLikes.objects.filter(user=self.user, post=self.post).count():
-            return False
-        super().save(*args, **kwargs)
-        return True
-
+    # def save(self, *args, **kwargs):
+    #     old_like = PostLikes.objects.filter(user=self.user, post=self.post, value=self.value).first()
+    #     if old_like:
+    #         return False
+    #     super().save(*args, **kwargs)
+    #     return True
+    #
     def __str__(self):
         return f"Like on {self.post.title} by {self.user} "
 

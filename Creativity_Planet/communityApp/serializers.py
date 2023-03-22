@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import *
+from django.db.models import Sum
 
 
 # -------------------- User Serializer --------------------
@@ -7,7 +8,7 @@ from .models import *
 class UserSerializerField(serializers.ModelSerializer):
     class Meta:
         model = UserTest
-        fields = ["name"]
+        fields = "__all__"
 
 
 # ///////////////////// POSTS SERIALIZER /////////////////////
@@ -32,8 +33,10 @@ class PostsSerializer(serializers.ModelSerializer):
         return comments_numer
 
     def get_extra_field_like(self, member):
-        likes_numer = PostLikes.objects.filter(post=member.pk).count()
-        return likes_numer
+        likes_numer = PostLikes.objects.filter(post=member.pk).aggregate(Sum('value'))
+        if not likes_numer["value__sum"]:
+            likes_numer["value__sum"] = 0
+        return likes_numer["value__sum"]
 
     class Meta:
         model = Posts
@@ -80,6 +83,14 @@ class SetCommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = '__all__'
+
+
+# -------------------- Get Comment SERIALIZER --------------------
+class GetCommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ["pk", "comment", "created_at", "is_answer", "user"]
+        depth = 1
 
 
 # -------------------- END Comment SERIALIZER --------------------
@@ -164,3 +175,39 @@ class PostPageSerializer(serializers.ModelSerializer):
         fields = ['pk', "title", "content", "rate_number", "created_at", "user",
                   "main_Image", "selected_at_by_admin", "post_owner", "tags", "comments"]
         # depth = 2
+
+
+class PostPageDETAILSSerializer(serializers.ModelSerializer):
+    # Tags
+    tags = serializers.SlugRelatedField(many=True, slug_field='name', queryset=Tags.objects.all())
+    # User
+    post_owner = serializers.SerializerMethodField('get_extra_fielduser', read_only=True)
+    # Liks
+    num_likes = serializers.SerializerMethodField('get_extra_field_like', read_only=True)
+
+    def get_extra_fielduser(self, member):
+        return UserSerializerField(UserTest.objects.get(pk=member.user.id)).data
+
+    # NUM of  COMMENTS
+    num_comments = serializers.SerializerMethodField('get_extra_field', read_only=True)
+
+    def get_extra_field(self, member):
+        comments_numer = Comment.objects.filter(post=member.pk).count()
+        return comments_numer
+
+    def get_extra_field_like(self, member):
+        likes_numer = PostLikes.objects.filter(post=member.pk).aggregate(Sum('value'))
+        if not likes_numer["value__sum"]:
+            likes_numer["value__sum"] = 0
+        return likes_numer["value__sum"]
+
+    comments = serializers.SerializerMethodField('get_extra_field')
+
+    def get_extra_field(self, member):
+        comments = Comment.objects.filter(post=member.pk)
+        return CommentSerializerField(comments, many=True).data
+
+    class Meta:
+        model = Posts
+        fields = ['pk', "title", "content", "rate_number","num_likes","num_comments", "created_at", "user",
+                  "main_Image", "selected_at_by_admin", "post_owner", "tags", "comments"]
