@@ -1,0 +1,213 @@
+/*--------head------------*/
+.head {
+  background-color: #ffffff;
+  padding: 3px 0;
+}
+
+
+
+.social {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  color: #ffffff;
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.logo img {
+  width: 60px;
+  height: 60px;
+
+}
+
+.dropdown-toggle {
+  background-color: #F2BC1B;
+  border-color: #F2BC1B;
+}
+
+.dropdown-toggle:hover {
+  background-color: #0071BC;
+  border-color: #0071BC;
+}
+
+.dropdown-item-text {
+  color: #fff;
+  font-weight: bold;
+}
+
+.dropdown-item {
+  color: #0071BC;
+}
+
+.dropdown-item:hover {
+  background-color: #41A8F3;
+  color: #fff;
+}
+
+.langitem {
+  display: flex;
+  align-items: center;
+}
+
+.fi {
+  font-size: 24px;
+  opacity: 0.5;
+  margin-right: 10px;
+}
+
+.fi:hover {
+  opacity: 1;
+}
+
+.rtl {
+  direction: rtl;
+}
+
+/*--------head------------*/
+/*--------header------------*/
+/* Header container */
+header {
+  background-color: #994199;
+  box-shadow: 0px 1px 3px #999999;
+  padding: 10px 20px;
+}
+
+/* Navigation links */
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+
+  
+}
+
+nav ul li {
+  margin: 0 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #F2BC1B;
+}
+
+/* Mobile navigation */
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #F2BC1B;
+  margin-top: 10px;
+  padding: 10px;
+  box-shadow: 0px 1px 3px #999999;
+}
+
+.mobile-nav li {
+  margin: 10px 0;
+}
+
+.mobile-nav a {
+  color: #994199;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.mobile-nav a:hover {
+  color: #0071BC;
+}
+
+/* Registration and login buttons */
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.registration {
+  background-color: #F2BC1B;
+  color: white;
+  padding: 10px 60px;
+  font-size: 20px;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: all 0.3s ease-in-out;
+  /* padding: 10px 20px;
+  border-radius: 20px;
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px; */
+}
+
+.registration:hover {
+  background-color: #0071BC;
+  color:#fff
+}
+
+.regBtn {
+  background-color: #0071BC;
+}
+
+.regBtn:hover{
+  background-color: #F2BC1B;
+  color: white;
+}
+
+/* Toggle button for mobile navigation */
+.toggle {
+  display: none;
+  background-color: #994199;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  /* Mobile layout */
+  nav {
+    position: relative;
+  }
+
+  .toggle {
+    display: block;
+  }
+
+  /* Hide desktop navigation */
+  nav ul {
+    display: none;
+  }
+
+}@media only screen and (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: flex;
+  }
+}
