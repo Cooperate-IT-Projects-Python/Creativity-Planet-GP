@@ -1,21 +1,26 @@
-"""Creativity_Planet URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.urls import path
 from . import views
 
 urlpatterns = [
-    #path('', views.test, name='test'),
+    # /////// ACTIVE CAMPS /////////
+    # Get All Active Camps generics
+    path('getactivecamps/', views.ActiveCampsGetSet.as_view()),
+    # Get Active Camps By CATEGORY
+    path('getactivebycategory/<int:pk>', views.active_camps_by_category),
+    # GET BEST ACTIVE CAMPS
+    path('getbestactivecamps/', views.GetBestActiveCamps.as_view()),
+    # GET SOON ACTIVE CAMPS
+    path('getsoonactivecamps/', views.GetSoonActiveCamps.as_view()),
+    # /////// CHECKOUT /////////
+    # Checkout Method
+    path('checkout/', views.mode_checkout_method),
+    # UPDATE DELETE Enrollment
+    path('updelenrollment/<int:pk>', views.enrollment_modify),
+    # /////// FINISHED CAMPS /////////
+    # Get All Finished Camps
+    path('getfinishedcamps/', views.GetFinishedCamps.as_view()),
+    # /////// PAYMENT METHODS /////////
+    # Get All Finished Camps
+    # path('order/', views.orders),
+
 ]
