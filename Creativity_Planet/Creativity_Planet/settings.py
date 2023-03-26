@@ -14,15 +14,12 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 
-
 load_dotenv()  # loads the configs from .env
 POSTGRES_PASSWORD = str(os.getenv('POSTGRES_PASSWORD'))
-
 
 REST_FRAMEWORK = {}
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -34,7 +31,6 @@ SECRET_KEY = 'django-insecure-^8^axwx%)fs^pbu4+m9xj5^r9+4ai_$r)g&=pnq0x+l@4)6!+u
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -85,7 +81,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Creativity_Planet.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -95,7 +90,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -115,7 +109,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -127,12 +120,10 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -147,3 +138,6 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:9000",
     "http://127.0.0.1:3000",
 ]
+
+# stripe
+# STRIPE_SECRET_KEY = <YOUR_STRIPE_SECRET_KEY>

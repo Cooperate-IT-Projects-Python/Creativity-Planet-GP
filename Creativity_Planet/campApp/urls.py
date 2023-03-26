@@ -13,10 +13,14 @@ urlpatterns = [
     path('getsoonactivecamps/', views.GetSoonActiveCamps.as_view()),
     # /////// CHECKOUT /////////
     # Checkout Method
-    path('checkout/', views.checkout_method),
+    path('checkout/', views.mode_checkout_method),
     # UPDATE DELETE Enrollment
     path('updelenrollment/<int:pk>', views.enrollment_modify),
     # /////// FINISHED CAMPS /////////
     # Get All Finished Camps
     path('getfinishedcamps/', views.GetFinishedCamps.as_view()),
+    # /////// PAYMENT METHODS /////////
+    # Get All Finished Camps
+    # path('order/', views.orders),
+
 ]

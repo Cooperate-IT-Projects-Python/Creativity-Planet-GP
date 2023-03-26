@@ -8,6 +8,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.http import JsonResponse
 from rest_framework import status
+
 from django.shortcuts import get_object_or_404
 
 """
@@ -171,7 +172,7 @@ def post_comments(request, pk):
                         safe=False, status=status.HTTP_200_OK)
 
 
-# -------------------- SET COMMENT  --------------------GET
+# -------------------- SET COMMENT  --------------------
 
 @api_view(['POST'])
 def set_comment(request, pk):
@@ -187,8 +188,43 @@ def set_comment(request, pk):
     post_comment.user = user
     post_comment.comment = comment
     post_comment.save()
-    post_comment_ser = LikesSerializer(post_comment)
+    post_comment_ser = GetCommentSerializer(post_comment)
     return JsonResponse(post_comment_ser.data,
+                        safe=False, status=status.HTTP_200_OK)
+
+
+# -------------------- SET REPLAY  --------------------
+@api_view(['POST'])
+def set_replay(request, pk):
+    comment = Comment.objects.filter(pk=pk).first()
+    user = UserTest.objects.filter(pk=request.data["user"]).first()
+    replay = request.data["replay"]
+    if not comment:
+        return JsonResponse("error: No Comment With This id", status=status.HTTP_409_CONFLICT, safe=False)
+    if not user:
+        return JsonResponse("error: No USER With This id", status=status.HTTP_409_CONFLICT, safe=False)
+    comment_replay = CommentReplays()
+    comment_replay.comment = comment
+    comment_replay.user = user
+    comment_replay.replay = replay
+    comment_replay.save()
+    post_comment_ser = GetReplaySerializer(comment_replay)
+    return JsonResponse(post_comment_ser.data,
+                        safe=False, status=status.HTTP_200_OK)
+
+
+# -------------------- GET REPLAY  --------------------
+@api_view(['GET'])
+def comment_replays(request, pk):
+    comment = Comment.objects.filter(pk=pk).first()
+    if not comment:
+        return JsonResponse("error: No Comment With This id", status=status.HTTP_409_CONFLICT, safe=False)
+    comment_replays = CommentReplays.objects.filter(comment=comment)
+    if not comment_replays:
+        return JsonResponse({"error": "This Comment has no Replays Yet"}, status=status.HTTP_404_NOT_FOUND, safe=False)
+
+    comments_ser = GetReplaySerializer(comment_replays, many=True)
+    return JsonResponse(comments_ser.data,
                         safe=False, status=status.HTTP_200_OK)
 
 

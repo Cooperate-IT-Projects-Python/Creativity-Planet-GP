@@ -9,7 +9,8 @@ from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from django.db.models import Q
 from django.http import JsonResponse
-
+import requests
+import json
 from django.db.models import Count
 
 
@@ -83,6 +84,29 @@ def checkout_method(request):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
 
+# CHECK METHOD 2
+@api_view(['POST'])
+def mode_checkout_method(request):
+    print(request.data)
+    # camp = ActiveCamps.objects.filter(pk=request.data["camp"]).first()
+    # user = UserTest.objects.filter(pk=request.data["user"]).first()
+    # max_attendees = request.data["max_attendees"]
+    # city = request.data["city"]
+    # state = request.data["state"]
+    # zip_code = request.data["zip_code"]
+    # if not camp:
+    #     return JsonResponse("error: No Post With This id", status=status.HTTP_409_CONFLICT, safe=False)
+    # if not user:
+    #     return JsonResponse("error: No USER With This id", status=status.HTTP_409_CONFLICT, safe=False)
+    # if value not in [1, 0, -1]:
+    #     return JsonResponse("error: value must be 1 or 0 or -1", status=status.HTTP_409_CONFLICT, safe=False)
+    try:
+
+        return Response(status=status.HTTP_200_OK)
+    except ValueError:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+
 # ------------ UPDATE DELETE Checkout -----------
 
 @api_view(['GET', "PUT", "DELETE"])
@@ -136,3 +160,29 @@ class GetFinishedCamps(mixins.ListModelMixin, mixins.CreateModelMixin, generics.
 
     def get(self, request):
         return self.list(request)
+
+
+# /////////////// ORDER ///////////////
+# def orders(request):
+#     # order = Order.objects.create(
+#     #     amount=1000,  # enter amount here
+#     # )
+#     # order.generate_secret()
+#     # order.save()  # Payment data
+#
+#     url = "https://stage-api.ioka.kz/v2/orders"
+#
+#     payload = json.dumps({
+#         'amount': 10000
+#     })
+#     headers = {
+#         'API-KEY': 'eyJ0eXAiOiJKV1..',
+#         'Content-Type': 'application/json'
+#     }
+#
+#     response = requests.post(url, headers=headers, data=payload)
+#     # order = response.json()['order']
+#
+#     # print(order['checkout_url'])
+#     # print(response)
+#     return Response(status=status.HTTP_200_OK)

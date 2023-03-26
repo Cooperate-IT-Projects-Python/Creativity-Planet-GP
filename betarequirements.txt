@@ -12,3 +12,4 @@ djangorestframework
 PIL
 qrcode
 django-cors-headers
+stripe

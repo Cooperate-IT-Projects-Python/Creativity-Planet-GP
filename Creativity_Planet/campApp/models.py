@@ -86,13 +86,39 @@ class ActiveCampVideos(models.Model):
         return f"Video {self.id} For {self.camp.title}"
 
 
+# QR MODEL
+class QrCode(models.Model):
+    url = models.URLField()
+    image = models.ImageField(upload_to='media/qrcods/%y/%m/%d', blank=True)
+
+    def __str__(self):
+        return f"QRCode {self.id} For {self.url} as Image {self.image}"
+
+    def save(self, *args, **kwargs):
+        qrcode_img = qrcode.make(self.url)
+        canvas = Image.new("RGB", (300, 300), "white")
+        draw = ImageDraw.Draw(canvas)
+        canvas.paste(qrcode_img)
+        buffer = BytesIO()
+        canvas.save(buffer, "PNG")
+        self.image.save(f'image{random.randint(0, 9999)}.png', File(buffer), save=False)
+        canvas.close()
+        super().save(*args, **kwargs)
+
+
 class CampsEnrollment(models.Model):
     camp = models.ForeignKey(ActiveCamps, on_delete=models.CASCADE, related_name='campsEnrollment')
     user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='campsEnrollment')
+    state = models.BooleanField(default=False)
     max_attendees = models.IntegerField(default=1, validators=[MinValueValidator(1)])
+    city = models.CharField(max_length=100, null=False, blank=False)
+    state = models.CharField(max_length=100, null=False, blank=False)
+    zip_code = models.IntegerField(null=False, blank=False)
     had_attend = models.IntegerField(default=0, validators=[MinValueValidator(0)])
     total_price = models.IntegerField(default=0, validators=[MinValueValidator(0)])
     enrolment_date = models.DateTimeField(default=now, blank=True)
+
+    # qrcode_url = models.ForeignKey(QrCode, on_delete=models.CASCADE, related_name='campsEnrollment')
 
     def clean(self):
         self.total_price = self.max_attendees * self.camp.price_per_child
@@ -108,6 +134,15 @@ class CampsEnrollment(models.Model):
 
     def __str__(self):
         return f"{self.user.name} Enrolled {self.camp.title} EnrollID {self.id}"
+
+
+class AttendeesNamesAges(models.Model):
+    enrollment = models.ForeignKey(CampsEnrollment, on_delete=models.CASCADE, related_name='attendeesNamesAges')
+    name = models.CharField(max_length=200)
+    age = models.FloatField(default=5, validators=[MinValueValidator(5), MaxValueValidator(12)])
+
+    def __str__(self):
+        return f"Attendees Names {self.name} Ages {self.age} for {self.enrollment}"
 
 
 # ////////// FINISHED CAMPS ///////////
@@ -152,21 +187,11 @@ class FinishedCampVideos(models.Model):
         return f"Video {self.id} For {self.camp.title}"
 
 
-# QR MODEL
-class QrCode(models.Model):
-    url = models.URLField()
-    image = models.ImageField(upload_to='media/qrcods/%y/%m/%d', blank=True)
-
-    def __str__(self):
-        return f"QRCode {self.id} For {self.url} as Image {self.image}"
-
-    def save(self, *args, **kwargs):
-        qrcode_img = qrcode.make(self.url)
-        canvas = Image.new("RGB", (300, 300), "white")
-        draw = ImageDraw.Draw(canvas)
-        canvas.paste(qrcode_img)
-        buffer = BytesIO()
-        canvas.save(buffer, "PNG")
-        self.image.save(f'image{random.randint(0, 9999)}.png', File(buffer), save=False)
-        canvas.close()
-        super().save(*args, **kwargs)
+# class Order(models.Model):
+#     secret = models.CharField(max_length=1000, default="", blank=True)
+#     amount = models.DecimalField(default=0)
+#     paid = models.BooleanField(default=False)
+#     checkout_url = models.CharField(max_length=1000, default="", blank=True)
+#
+#     def generate_secret(self):
+#         self.secret = str(random.randint(10000, 99999))

@@ -119,7 +119,7 @@ class CommentReplays(models.Model):
     user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='commentReplays')
 
     def __str__(self):
-        return f"Comment-report {self.id} on comment {self.comment} reported by {self.user}"
+        return f"replay {self.id} on {self.comment} reported by {self.user}"
 
 
 class CommentReports(models.Model):
