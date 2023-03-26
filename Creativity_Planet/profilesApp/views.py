@@ -34,6 +34,8 @@ from .serializers import SignUpUserSerialzer
 def register(request):
     # if request.method == "POST":
         # form = UserRegistrationForm(request.POST,request.FILES)
+    print("hiiiiiiiiiiiiiiiiiiiiiiiiii")
+    print(request.data)
     userser = SignUpUserSerialzer(data=request.data)
     print('hello0')
     if userser.is_valid():
@@ -63,7 +65,11 @@ def custom_login(request):
     print(user)
     if user is not None:
         login(request, user)
-        return Response({"user": user.id})
+        return Response({
+            "user_id": user.id,
+            "username": user.username,
+            # "image": user.image,
+                         })
 
     else:
         return Response("error")

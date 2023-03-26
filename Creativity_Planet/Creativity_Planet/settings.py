@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'campApp.apps.CampappConfig',
     'rest_framework',
     'django_rest_passwordreset',
+    "corsheaders",
+
 ]
 
 MIDDLEWARE = [
@@ -64,6 +66,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+
 ]
 
 ROOT_URLCONF = 'Creativity_Planet.urls'
@@ -129,15 +133,6 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
-
-STATIC_URL = 'static/'
-
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
-# Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -154,7 +149,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_FROM = HOST_EMAIL
 EMAIL_HOST_USER = HOST_EMAIL
-EMAIL_HOST_PASSWORD = HOST_APP_PASS 
+EMAIL_HOST_PASSWORD = HOST_APP_PASS
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
@@ -173,3 +168,20 @@ REST_FRAMEWORK = {
     ),
     'PAGE_SIZE': 10
 }
+
+STATIC_URL = 'static/'
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+# Default primary key field type
+# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8080",
+    "http://localhost:3000",
+    "http://127.0.0.1:9000",
+    "http://127.0.0.1:3000",
+]

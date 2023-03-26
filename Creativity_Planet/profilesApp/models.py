@@ -11,6 +11,7 @@ class CustomUser(AbstractUser):
 
 
     email = models.EmailField(unique=True)
+    # image = models.ImageField(upload_to='media/user/%y/%m/%d', null=False, blank=False)
 
 
     def __str__(self):
