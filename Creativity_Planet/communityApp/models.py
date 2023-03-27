@@ -22,8 +22,8 @@ class Posts(models.Model):
     created_at = models.DateTimeField(default=datetime.now, null=True, blank=True)
     selected_at_by_admin = models.BooleanField(default=False)
     main_Image = models.ImageField(upload_to='media/posts/%y/%m/%d', null=True, blank=True)
-    user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='posts')
-    # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='posts')
+    # user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='posts')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name='posts')
 
     def __str__(self):
         return self.title

@@ -11,9 +11,16 @@ from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMessage
 from django.db.models.query_utils import Q
 from .tokens import account_activation_token
-from communityApp.models import Posts
-from communityApp.serializers import PostsSerializer
+from communityApp.models import Posts,UserFavorites
+from communityApp.serializers import PostsSerializer,UserFavoritesSerializer
+from rest_framework import status
+from rest_framework import generics
+from rest_framework.response import Response
+from django.contrib.auth.models import User
+from .serializers import ChangePasswordSerializer
+from rest_framework.permissions import IsAuthenticated  
 
+from django.views.decorators.csrf import csrf_exempt
 
 
 from rest_framework.decorators import api_view
@@ -27,6 +34,8 @@ from .serializers import SignUpUserSerialzer
 def register(request):
     # if request.method == "POST":
         # form = UserRegistrationForm(request.POST,request.FILES)
+    print("hiiiiiiiiiiiiiiiiiiiiiiiiii")
+    print(request.data)
     userser = SignUpUserSerialzer(data=request.data)
     print('hello0')
     if userser.is_valid():
@@ -56,12 +65,18 @@ def custom_login(request):
     print(user)
     if user is not None:
         login(request, user)
-        return Response({"user": user.id})
+        return Response({
+            "user_id": user.id,
+            "username": user.username,
+            # "image": user.image,
+                         })
 
     else:
         return Response("error")
 
+
 @api_view(['POST'])
+@csrf_exempt
 def custom_logout(request):
     logout(request)
     return Response("logged out")
@@ -98,7 +113,7 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        c
+        return Response('account activated')
     else:
         return Response('activation failed')
 
@@ -107,10 +122,132 @@ def user_profile(request):
     user = request.user
     posts = Posts.objects.filter(user=user)
     serial = PostsSerializer(posts,many=True)
+    favposts = UserFavorites.objects.filter(user=user)
+    # query= favposts.userFavorites.all()
+    print(favposts)
+    # print(query)
+    favserial = UserFavoritesSerializer(favposts,many=True)
 
-    return Response(serial.data)
+    return Response({"posts":serial.data,"favposts":favserial.data})
+
+@api_view(['POST'])
+def edit_user_profile(request):
+    user = request.user
+    user.first_name = request.POST['first_name']
+    user.last_name = request.POST['last_name']
+    user.save()
+    return Response("profile edited")
 
 # class PostsGetSet(generics.ListCreateAPIView):
 #     user = request.user
 #     queryset = Posts.objects.filter(user=user)
 #     serializer_class = PostsSerializer
+# from django.http import JsonResponse
+
+# import json
+# @api_view(['POST'])
+# def custom_login(request):
+#     # if request.user.is_authenticated:
+#     #     return redirect(reverse('home'))
+#     data = json.loads(request.body)
+#     username = data.get('username')
+#     password = data.get('password')
+#     print(username)
+#     print(password)
+#     print('login1')
+#     user = authenticate(username=username, password=password)
+#     print('login2')
+#     print(user)
+#     if user is not None:
+#         login(request, user)
+#         return JsonResponse({"detail": "Success"})
+
+#     else:
+#         return JsonResponse({"detail": "Invalid credentials"},status=400)
+
+@api_view(['POST'])
+def password_reset_request(request):
+    if request.method == 'POST':
+            print("pass1")
+        # form = PasswordResetForm(request.POST)
+        # if form.is_valid():
+            user_email = request.data['email']
+            print("pass2")
+            
+            associated_user = get_user_model().objects.filter(Q(email=user_email)).first()
+            print("pass3")
+
+            if associated_user:
+                subject = "Password Reset request"
+                message = render_to_string("template_reset_password.html", {
+                    'user': associated_user,
+                    'domain': get_current_site(request).domain,
+                    'uid': urlsafe_base64_encode(force_bytes(associated_user.pk)),
+                    'token': account_activation_token.make_token(associated_user),
+                    "protocol": 'https' if request.is_secure() else 'http'
+                })
+                email = EmailMessage(subject, message, to=[associated_user.email])
+                print("pass4")
+                if email.send():
+                    messages.success(request,
+                        """
+                        <h2>Password reset sent</h2><hr>
+                        <p>
+                            We've emailed you instructions for setting your password, if an account exists with the email you entered. 
+                            You should receive them shortly.<br>If you don't receive an email, please make sure you've entered the address 
+                            you registered with, and check your spam folder.
+                        </p>
+                        """
+                    )
+                    print("pass5")
+                    return Response("Password reset sent")
+                else:
+                    return Response("reset sent")
+
+
+
+    # form = PasswordResetForm()
+    # return render(
+    #     request=request,
+    #     template_name="password_reset.html",
+    #     context={"form": form}
+    #     )
+
+@api_view(['GET','POST'])
+def passwordResetConfirm(request, uidb64, token):
+    User = get_user_model()
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+        print("confr0")
+    except:
+        user = None
+    print("confr1")
+    print(user)
+
+    if user is not None and account_activation_token.check_token(user, token):
+        print("enter1")
+        if request.method == 'POST':
+            passser = ChangePasswordSerializer(data=request.data)
+            print("enter2")
+
+            # form = SetPasswordForm(user, request.POST)
+            # password=request.data['password']
+            if passser.is_valid():
+                print('passre1')
+                passw = passser.save()
+                print('passre2')
+                # form.save()
+                return Response("pass succefuly changed")
+            else:
+                return Response("error")
+        else:
+            passser = ChangePasswordSerializer()  
+            return Response(passser.data)  
+
+    else:
+        return Response(" major error")
+
+    
+
+
