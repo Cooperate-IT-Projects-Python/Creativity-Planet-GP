@@ -9,7 +9,7 @@ social-auth-core
 django-sslserver
 six
 djangorestframework
-PIL
 qrcode
 django-cors-headers
 stripe
+django_rest_passwordreset
