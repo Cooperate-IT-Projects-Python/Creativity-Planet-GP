@@ -127,7 +127,7 @@ class RatePost(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericA
 @api_view(['POST'])
 def post_likes(request, pk):
     post = Posts.objects.filter(pk=pk).first()
-    user = UserTest.objects.filter(pk=request.data["user"]).first()
+    user = CustomUser.objects.filter(pk=request.data["user"]).first()
     value = request.data["value"]
     if not post:
         return JsonResponse("error: No Post With This id", status=status.HTTP_409_CONFLICT, safe=False)
@@ -177,7 +177,7 @@ def post_comments(request, pk):
 @api_view(['POST'])
 def set_comment(request, pk):
     post = Posts.objects.filter(pk=pk).first()
-    user = UserTest.objects.filter(pk=request.data["user"]).first()
+    user = CustomUser.objects.filter(pk=request.data["user"]).first()
     comment = request.data["comment"]
     if not post:
         return JsonResponse("error: No Post With This id", status=status.HTTP_409_CONFLICT, safe=False)
@@ -197,7 +197,7 @@ def set_comment(request, pk):
 @api_view(['POST'])
 def set_replay(request, pk):
     comment = Comment.objects.filter(pk=pk).first()
-    user = UserTest.objects.filter(pk=request.data["user"]).first()
+    user = CustomUser.objects.filter(pk=request.data["user"]).first()
     replay = request.data["replay"]
     if not comment:
         return JsonResponse("error: No Comment With This id", status=status.HTTP_409_CONFLICT, safe=False)

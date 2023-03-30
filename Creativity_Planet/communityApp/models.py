@@ -51,7 +51,7 @@ class PostRates(models.Model):
         (0, "Hold"),
         (1, "Up"),
     )
-    user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='postRates')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='postRates')
     post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='postRates')
     value = models.IntegerField(choices=RATES_CHOICES, default=0)
 
@@ -65,7 +65,7 @@ class PostLikes(models.Model):
         (0, "Hold"),
         (1, "Up"),
     )
-    user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='postLikes')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='postLikes')
     post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='postLikes')
     value = models.IntegerField(choices=RATES_CHOICES, default=0)
 
@@ -98,7 +98,7 @@ class PostReports(models.Model):
     reason = models.TextField(null=False, blank=False)
     created_at = models.DateTimeField(default=datetime.now, blank=True)
     post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='postReports')
-    #user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='postReports')
+    #user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='postReports')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='postReports')
 
 
@@ -111,7 +111,7 @@ class Comment(models.Model):
     created_at = models.DateTimeField(default=datetime.now, blank=True)
     is_answer = models.BooleanField(default=False)
     post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='comment')
-    # user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='comment')
+    # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='comment')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='comment')
 
 
@@ -123,7 +123,7 @@ class CommentReplays(models.Model):
     replay = models.TextField(null=False, blank=False)
     created_at = models.DateTimeField(default=datetime.now, blank=True)
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name='commentReplays')
-    # user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='commentReplays')
+    # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='commentReplays')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='commentReplays')
 
 
@@ -135,7 +135,7 @@ class CommentReports(models.Model):
     reason = models.TextField(null=False, blank=False)
     created_at = models.DateTimeField(default=datetime.now, blank=True)
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name='commentReports')
-    # user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='commentReports')
+    # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='commentReports')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='commentReports')
 
 
@@ -147,7 +147,7 @@ class ReplayReports(models.Model):
     reason = models.TextField(null=False, blank=False)
     created_at = models.DateTimeField(default=datetime.now, blank=True)
     replay = models.ForeignKey(CommentReplays, on_delete=models.CASCADE, related_name='replayReports')
-    # user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='replayReports')
+    # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='replayReports')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='replayReports')
 
 
@@ -157,7 +157,7 @@ class ReplayReports(models.Model):
 
 class UserFavorites(models.Model):
     post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='userFavorites')
-    # user = models.ForeignKey(UserTest, on_delete=models.CASCADE, related_name='userFavorites')
+    # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='userFavorites')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='userFavorites')
 
 

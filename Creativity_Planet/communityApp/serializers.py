@@ -9,7 +9,7 @@ from django.db.models import Sum
 
 class UserSerializerField(serializers.ModelSerializer):
     class Meta:
-        # model = UserTest
+        # model = CustomUser
         model = CustomUser
         fields = ["username"]
 
@@ -115,7 +115,7 @@ from django.db.models import Sum
 
 # class UserSerializerField(serializers.ModelSerializer):
 #     class Meta:
-#         model = UserTest
+#         model = CustomUser
 #         fields = "__all__"
 
 
@@ -230,7 +230,7 @@ class ReplaySerializerField(serializers.ModelSerializer):
     replay_owner = serializers.SerializerMethodField('get_extra_field')
 
     def get_extra_field(self, member):
-        return UserSerializerField(UserTest.objects.get(pk=member.user.id)).data
+        return UserSerializerField(CustomUser.objects.get(pk=member.user.id)).data
 
     class Meta:
         model = CommentReplays
@@ -243,7 +243,7 @@ class CommentSerializerField(serializers.ModelSerializer):
     comment_replays = serializers.SerializerMethodField('get_extra_fieldreplay')
 
     def get_extra_fielduser(self, member):
-        return UserSerializerField(UserTest.objects.get(pk=member.user.id)).data
+        return UserSerializerField(CustomUser.objects.get(pk=member.user.id)).data
 
     def get_extra_fieldreplay(self, member):
         comment_replays = CommentReplays.objects.filter(comment=member.pk)
@@ -260,7 +260,7 @@ class PostPageSerializer(serializers.ModelSerializer):
     post_owner = serializers.SerializerMethodField('get_extra_fielduser')
 
     def get_extra_fielduser(self, member):
-        return UserSerializerField(UserTest.objects.get(pk=member.user.id)).data
+        return UserSerializerField(CustomUser.objects.get(pk=member.user.id)).data
 
     comments = serializers.SerializerMethodField('get_extra_field')
 
@@ -284,7 +284,7 @@ class PostPageDETAILSSerializer(serializers.ModelSerializer):
     num_likes = serializers.SerializerMethodField('get_extra_field_like', read_only=True)
 
     def get_extra_fielduser(self, member):
-        return UserSerializerField(UserTest.objects.get(pk=member.user.id)).data
+        return UserSerializerField(CustomUser.objects.get(pk=member.user.id)).data
 
     # NUM of  COMMENTS
     num_comments = serializers.SerializerMethodField('get_extra_field', read_only=True)
