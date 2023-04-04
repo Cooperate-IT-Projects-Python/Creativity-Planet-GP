@@ -13,7 +13,13 @@
 
 ![screenshot](https://scontent.fcai20-4.fna.fbcdn.net/v/t39.30808-6/324407062_733638284694669_7641898852456189411_n.png?_nc_cat=111&ccb=1-7&_nc_sid=e3f864&_nc_ohc=1GKa9TMvzmQAX9z3H3r&_nc_ht=scontent.fcai20-4.fna&oh=00_AfCTHlxDV0Yodo2fHIYDABJcEjSRrGVBW-zqzpotQAI7BA&oe=643061E1)
 
+---------------------------------------------------------------
 
+[CPA V1 Class Diagram](https://drive.google.com/file/d/1znJnYsY7mkQ5o-tMb9PzNvIRMI27BI_6/view?ts=64090a98)
+---------------------------------------------------------------
+[Business Content](https://docs.google.com/presentation/d/1pdRQUolEDpE6DXQAHM8NU086VHCBWT2r9ClO3Vg6-cU/edit#slide=id.p)
+---------------------------------------------------------------
+[CPA Requirement](https://www.canva.com/design/DAFazR_M5SE/J_Lfdkqo6qr81Uei6TaXIQ/edit?analyticsCorrelationId=5a36b1e3-60cb-44d3-9930-43aa95eed002)
 ---------------------------------------------------------------
 
 ## How to run back end 
