@@ -1,0 +1,158 @@
+
+{
+  "app_title": "title",
+  "language": "language",
+  "packages":"Our Packages",
+  "home": "Home",
+  "about": "About",
+  "store": "Store",
+  "community": "Community",
+  "registration":"ٌRegister",
+  "login": "Log In",
+  "aboutus":"About US",
+  "about_title":"An integrated community for you and your child",
+  "Camps":"Our Camps",
+  "campstitle":"Our goal in the camp is to discover children's passion by introducing them to different fields",
+  "team":"Our Team ",
+  "contact":" Contact Us"
+  ,"contact us title":"You can contact us for any questions or suggestions"
+  ,"address":"Address"
+  ,"address title":"Egypt - Giza - Dokki"
+  ,"email":" Email"
+  ,"phone":"phone "
+  ,"full name":"Full Bame "
+  ,"subject":"Subject "
+  ,"leave a message":"leave a message"
+  ,"send":"send "
+  ,"subscribe":"subscribe "
+  ,"welcome to our academy":"welcome to our academy"
+  ,"our academy title":"Creativity Planet Academy"
+  ,"Book now":"Book now",
+  "Our advantages":"Our advantages",
+
+  "first-bullet-point": "Integrated community for you and your child",
+  "second-bullet-point": "The first comprehensive educational platform for children and mothers",
+  "third-bullet-point": "We work with the STEAM education system",
+  "fourth-bullet-point": "We discover your child's passion and develop their abilities",
+  "fifth-bullet-point": "Our experience dates back to 2019",
+  "sixth-bullet-point": "18k followers",
+  "seventh-bullet-point": "A system based on the practical application of knowledge and the integration of education with life",
+  "eighth-bullet-point": "Based on the integration and interconnection of different sciences",
+  "ninth-bullet-point": "Full cooperation between teachers in setting the methodological foundations",
+  "tenth-bullet-point": "Lecturers are professionally trained on the STEAM education system"
+, "parent reviews subtitle": "Parent Reviews",
+"parent reviews title": "With Their Children's Engagement in Camps",
+"our camps subtitle": "Our Camps",
+    "our camps title": "Our goal for the camp is to discover children's passions through exposure to different fields"
+,"newsletter title": "Newsletter - Stay Up to Date with the Latest Updates",
+"enter email placeholder": "Enter your email address",
+"about us": "About Us",
+    "terms and conditions": "Terms and Conditions",
+    "privacy policy": "Privacy Policy",
+    "reviews": "Reviews",
+    "contact us": "Contact Us",
+    "happy kids": "Happy Kids"
+,
+"categories title": "Categories",
+"about academy": "About the Academy",
+"our community": "Our Community",
+"innovative planet": "Creativity Planet",
+"pricing subtitle": "OUR PRICING",
+"pricing title": "Pricing & Packages",
+"courses subtitle": "COURSES",
+"courses title": "Browse Our Online Courses",
+"questions title": "Have a Question?",
+"questions address": "Egypt - Giza - Dokki",
+"questions phone": "+2 392 3929 210",
+"questions email": "info@yourdomain.com",
+"recent post": "Recent Post",
+"mission title": "Our Mission",
+"mission": "مهمتنا",
+"missionDesc": "أكاديمية متخصصة في تعليم الأطفال العلوم والفنون المختلفة بطريقة عملية بإستخدام نظام STEAM التعليمي واكتشاف شغفهم وتنميته مهاراتهم تهيئة عقل الأطفال للتعامل مع العلوم والفنون المعاصرة  وكذلك الاستعداد والتأهيل للالتحاق بالوظائف المستقبلية",
+"vision": "رؤيتنا",
+"visionDesc": "نسعى إلى تكوين نظام تعليمي متكامل للأطفال وبيئة آمنه للأمهات والأطفال",
+"goal": "هدفنا",
+"goalDesc": "هدفنا بناء منصة تعليمية متكاملة للأمهات والأطفال في كل أنحاء الوطن العربي تكون بمثابة مجتمع لهم",
+"join us":"Join Now",
+"our posts subtitle":"Hot Posts",
+"account":"Account",
+"teams":"Our Team",
+"userprofile":"User Profile",
+"Comments":"Comments",
+"title": "Frequently Asked Questions",
+  "subtitle": "FAQs",
+    "whatsonyourmind": "What's on your mind?",
+    "addphoto": "Add photo",
+    "post": "Post",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete.confirmation": "Are you sure you want to delete this post?",
+    "delete.dialog.title": "Confirm Delete",
+    "delete": "Delete",
+    "close": "Close",
+    "edit": "Edit",
+    "commentLabel": "Add a comment",
+    "submit": "Submit",
+    "editPost": "Edit Post",
+    "titleLabel": "Title",
+    "contentLabel": "Content",
+    "posta": {
+      "comments": "Comments",
+      "likes": "{{num_likes}} Likes",
+      "commentsBtn": "Comments",
+      "tags": "Tags: {{tags}}",
+      "owner": "Post owner: {{username}}",
+      "addComment": "Add a comment"
+    },"camp": {
+      "category": "Camp Category",
+      "start_date": "Start Date",
+      "end_date": "End Date",
+      "checkout": "Checkout",
+      "details": "Camp Details",
+      "duration": "Duration of Camp:",
+      "start_time": "Start Time:",
+      "max_enrolment": "Maximum Number of Enrolment:",
+      "current_enrolment": "Current Number of Enrolment:",
+      "offer": "Special Offer for a Limited Time:",
+      "location": "Camp Location:"
+      
+    },"campDetails": {
+      "campDetails": "Camp Details",
+      "duration": "Camp Duration",
+      "startTime": "Start Time",
+      "maxEnrolment": "Maximum Number of Enrolment",
+      "currentEnrolment": "Current Number of Enrolment",
+      "offer": "Limited Time Offer",
+      "location": "Camp Location"
+    },
+    "logout": "Log out",
+    "welcome": "Welcome, {{username}}!",
+    "signup": "Sign up"
+   , "logins": {
+    "header": "Log In",
+    "usernamePlaceholder": "Username",
+    "passwordPlaceholder": "Password",
+    "loggingIn": "Logging in...",
+    "logIn": "Log In",
+    "noAccount": "Don't have an account?",
+    "signUp": "Sign up"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "FAQs"
+  },
+  "signups": {
+    "header": "Signup",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "signup": "Signup",
+    "signingUp": "Signing up...",
+    "alreadyHaveAccount": "Already have an account?",
+    "login": "Log in"
+  }
+
+}

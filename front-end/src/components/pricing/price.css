@@ -1,0 +1,94 @@
+.price .items {
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 5px 25px rgba(189, 15, 205, 0.316) !important;
+  
+}
+.price h1 {
+  font-size: 50px;
+  margin: 20px 0;
+  color:#f2bc1B;
+}
+.price h1 span {
+  font-size: 20px;
+  margin-right: 5px;
+  color: #000;
+}
+.price p {
+  color: grey;
+  margin: 40px 0;
+} 
+/*--------------faq-------------*/
+ .faq .container {
+  max-width: 85%;
+  border-radius: 5px;
+}
+.faq .box {
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+.faq button {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 15px 20px;
+}
+.faq h2 {
+  font-weight: 500;
+}
+.faq p {
+  padding: 20px;
+}
+.faq .accordion:hover {
+  background-color: #f2bc1B;
+  color: #fff;
+} 
+.grid5 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 30px;
+}
+/*--------------faq-------------*/
+
+
+@media screen and (max-width: 1050px) {
+  .items{
+    margin-top:14rem;
+  }
+
+
+}
+ @media screen and (max-width: 800px) {
+  .items{
+    margin-top:18rem;
+  }
+  .grid5 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 2fr));
+    grid-gap: 30px;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .items{
+    margin-top:auto;
+  }
+  .grid5 {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(500px, 4fr));
+    grid-gap: 30px;
+  }
+}
+@media screen and (max-width: 630px) {
+  .items{
+    margin-top:auto;
+  }
+  @media only screen and (max-width: 576px) {
+    .grid2 {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 20px;
+    }
+  }
+} 

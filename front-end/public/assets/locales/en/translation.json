@@ -1,0 +1,161 @@
+{
+  "app_title": "عنوان",
+  "language": "اللغة",
+  "packages":"الباقات ",
+  "camps":"المعسكرات",
+  "home": "الرئيسية",
+  "about": "من نحن ",
+  "store": "المتجر",
+  "community": "مجتمعنا",
+  "registration":"تسجيل",
+  "login":"دخول",
+  "aboutus":"عن الاكاديمية ",
+  "about_title":"مجتمع متكامل ليكي ولطفلك ",
+  "Camps":"معسكراتنا",
+  "campstitle":"هدفنا من الكامب هو إكتشاف شغف الأطفال من خلال تعرفه على مجالات مختلفة ",
+  "team":"فريقنا",
+  "contact":"تواصل معنا"
+  ,"contact us title":"يمكنك التواص معنا لأي استفسار أو اقتراح"
+  ,"address":"العنوان"
+  ,"address title":"مصر -الجيزة -الدقي"
+  ,"email":"البريد الإلكتروني "
+  ,"phone":" الهاتف"
+  ,"full name":"الإسم ثلاثي"
+  ,"subject":"الموضوع "
+  ,"leave a message":"اترك رسالتك هنا"
+  ,"send":"إرسال الرسالة  "
+  ,"subscribe":"تابعنا هنا"
+  ,"welcome to our academy":"مرحبا بكم في أكاديميتنا "
+  ,"our academy title":"أكاديمية كوكب الإبتكار "
+  ,"Book now":"حجز الآن ",
+  "Our advantages":"مميزاتنا",
+
+  "first-bullet-point": "مجتمع متكامل لك ولطفلك",
+  "second-bullet-point": "أول منصة تعليمية متكاملة للأطفال والأمهات",
+  "third-bullet-point": "نعمل بنظام STEAM التعليمي",
+  "fourth-bullet-point": "نكتشف شغف طفلك وننمي قدراته",
+  "fifth-bullet-point": "خبرتنا من 2019",
+  "sixth-bullet-point": "18 ألف متابع",
+  "seventh-bullet-point": "نظام قائم على التطبيق العملي للمعرفة ودمج التعليم بالحياة",
+  "eighth-bullet-point": "بناء على تكامل وترابط العلوم المختلفة",
+  "ninth-bullet-point": "التعاون بين المعلمين بالكامل في وضع الأسس المنهجية ",
+  "tenth-bullet-point": ">المحاضرين مدربين بشكل احترفي على نظام steam التعليمي",
+  "parent reviews subtitle": "آراء أولياء الأمور",
+    "parent reviews title": "بتفاعل أطفالهم مع المعسكرات"
+, "our camps subtitle": "معسكراتنا",
+"our camps title": "هدفنا من الكامب هو إكتشاف شغف الأطفال من خلال تعرفه على مجالات مختلفة",
+"newsletter title": "النشرة الإخبارية - تابع باستمرار واحصل على آخر تحديث",
+"enter email placeholder": "ادخل البريد الإلكتروني",
+"about us": " موقعنا",
+    "terms and conditions": "الشروط والأحمكام",
+    "privacy policy": "سياسة الموقع",
+    "reviews": "الآراء",
+    "contact us": "تواصل معنا",
+    "happy kids": "أطفالنا السعداء",
+    "categories title": "الأقسام",
+    "about academy": "من نحن ",
+
+    "our community": "مجتمعنا",
+    "innovative planet": "الكوكب المبتكر",
+    "pricing subtitle": "الباقات الخاص بنا",
+    "pricing title": "الأسعار والحزم",
+    "courses subtitle": "الدورات التدريبية",
+    "courses title": "تصفح دوراتنا التدريبية عبر الإنترنت",
+    "questions title": "هل لديك أي سؤال؟",
+    "questions address": "مصر -الجيزة -الدقي",
+    "questions phone": "+2 392 3929 210",
+    "questions email": "info@yourdomain.com",
+    "recent post": "المنشورات الاخيرة ",
+    "mission title": "مهمتنا",
+    "mission": "مهمتنا",
+    "missionDesc": "أكاديمية متخصصة في تعليم الأطفال العلوم والفنون المختلفة بطريقة عملية بإستخدام نظام STEAM التعليمي واكتشاف شغفهم وتنميته مهاراتهم تهيئة عقل الأطفال للتعامل مع العلوم والفنون المعاصرة  وكذلك الاستعداد والتأهيل للالتحاق بالوظائف المستقبلية",
+    "vision": "رؤيتنا",
+    "visionDesc": "نسعى إلى تكوين نظام تعليمي متكامل للأطفال وبيئة آمنه للأمهات والأطفال",
+    "goal": "هدفنا",
+    "goalDesc": "هدفنا بناء منصة تعليمية متكاملة للأمهات والأطفال في كل أنحاء الوطن العربي تكون بمثابة مجتمع لهم",
+    "join us":"انضم الان",
+    "our posts subtitle":"المنشورات الأكثر تفاعلا",
+    "account":"حسابك",
+    "teams":"فريقنا",
+    "userprofile":"حسابك",
+    "Comments":"تعليقات",
+
+    "title": "الأسئلة الشائعة",
+    "subtitle": "أسئلة وأجوبة",
+    
+      "whatsonyourmind": "ما الذي يجول ببالك؟",
+
+    
+      "addphoto": "إضافة صورة",
+      "post": "نشر"    ,
+       "cancel": "إلغاء",
+    "save": "حفظ",
+    "delete.confirmation": "هل أنت متأكد من أنك تريد حذف هذا المنشور؟",
+    "delete.dialog.title": "تأكيد الحذف",
+    "delete": "حذف",
+    "close": "إغلاق",
+    "edit": "تعديل",
+    "commentLabel": "أضف تعليقًا",
+    "submit": "إرسال",
+    "editPost": "تعديل المنشور",
+    "titleLabel": "العنوان",
+    "contentLabel": "المحتوى"
+,"posta": {
+  "comments": "التعليقات",
+  "likes": "{{num_likes}} إعجاب",
+  "commentsBtn": "تعليق",
+  "tags": "الوسوم: {{tags}}",
+  "owner": "صاحب المنشور: {{username}}",
+  "addComment": "أضف تعليقاً"
+},
+"camp": {
+  "category": "تصنيف المعسكر",
+  "start_date": "تاريخ البدء",
+  "end_date": "تاريخ النهاية",
+  "checkout": "دفع",
+  "details": "تفاصيل المعسكر",
+  "duration": "مدة المعسكر:",
+  "start_time": "ساعة البدء:",
+  "max_enrolment": "الحد الأقصى لعدد المتقدمين:",
+  "current_enrolment": "العدد الحالي للمتقدمين:",
+  "offer": "عرض خاص لفترة محدودة:",
+  "location": "مكان المعسكر:"
+},
+"campDetails": {
+  "campDetails": "تفاصيل المعسكر",
+  "duration": "مدة المعسكر",
+  "startTime": "ساعة البدء",
+  "maxEnrolment": "الحد الأقصى لعدد المتقدمين",
+  "currentEnrolment": "العدد الحالي للمتقدمين",
+  "offer": "عرض خاص لفترة محدودة",
+  "location": "مكان المعسكر"
+},
+"logout": "تسجيل الخروج",
+    "welcome": "مرحبًا، {{username}}!",
+    "signup": "إنشاء حساب", 
+    "logins": {
+      "header": "تسجيل الدخول",
+      "usernamePlaceholder": "اسم المستخدم",
+      "passwordPlaceholder": "كلمة المرور",
+      "loggingIn": "جاري تسجيل الدخول...",
+      "logIn": "تسجيل الدخول",
+      "noAccount": "ليس لديك حساب؟",
+      "signUp": "سجل الآن"
+    },
+    "faq": {
+      "title": "الأسئلة الشائعة",
+      "subtitle": "الأسئلة الشائعة"
+    },
+    "signups": {
+      "header": "التسجيل",
+      "firstName": "الاسم الأول",
+      "lastName": "الاسم الأخير",
+      "username": "اسم المستخدم",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "confirmPassword": "تأكيد كلمة المرور",
+      "signup": "تسجيل",
+      "signingUp": ".....جاري",
+      "alreadyHaveAccount": "لدي حساب بالفعل ؟",
+      "login": "تسجيل الدخول"}
+}

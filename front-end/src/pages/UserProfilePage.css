@@ -1,0 +1,126 @@
+.user-profile-page {
+  background-color: #ffffff;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin:5%;
+  box-shadow: 0 5px 25px rgba(1 1 1/15%);
+
+  
+}
+.profileImg{
+  /* height: 50%; */
+  width: 20%;
+  /* border-radius:50%;
+  -webkit-border-radius:50%;
+  -moz-border-radius:50%;
+  -ms-border-radius:50%;
+  -o-border-radius:50%; */
+}
+.user-info {
+  margin-bottom: 50px;
+  background-color: #ffd828f5;
+  /* padding: 2rem; */
+  box-shadow: 0 5px 40px #c666c6c1;
+  /* box-shadow: 0 5px 40px #836f164f; */
+  
+}
+.info{
+  display: inline-block;
+  margin-left: 35px;
+  /* margin-top: 10px; */
+}
+.user-info h1 {
+  /* font-size: 30px; */
+  margin-bottom: 10px;
+  
+}
+
+.user-info p {
+
+  margin-bottom: 5px;
+  
+}
+
+.user-posts {
+  width: 80%;
+  text-align:center;
+  
+}
+
+.slick-slider {
+  position: relative;
+}
+
+.slick-dots {
+  position: absolute;
+  bottom: -35px;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.slick-dots li {
+  margin: 0 5px;
+}
+
+.slick-dots button {
+  background-color: #bbb;
+  border: none;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+}
+
+.slick-dots button:before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.slick-dots button.slick-active {
+  background-color: #333;
+}
+
+.post {
+  background-color: #fff;
+  border: 1px solid #c4c1c1;
+  padding: 20px;
+  margin: 0 20px;
+  text-align: center;
+  height: 100%;
+  box-shadow: 0 5px 25px #c666c6c1;
+}
+
+.post h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color:white;
+  background-color:#994199;
+  padding: 5px 0px;
+}
+
+.post p {
+  font-size: 1.2rem;
+}
+.postImg{
+  width:150px;
+  height:150px;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+}
+.post small{
+  text-align: left !important;
+  background-color:#eee;
+  border-radius: 10px;
+  padding:10px;
+  padding:10px;
+  margin-top:10px ;
+}

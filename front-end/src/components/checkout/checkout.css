@@ -1,0 +1,67 @@
+.formDiv {    
+    padding: 21px;    
+     border-radius: 5px; 
+     width:60%;   
+     text-align:center;
+     background: rgba(255, 255, 255, 0.733);
+     box-shadow: 0 5px 25px rgba(1 1 1/15%);
+     margin-bottom: 50px;
+     margin-top: 50px;
+     
+    }  
+
+        
+    input[type=text],input[type=number], select     
+    {    
+      width: 100%;    
+      padding: 12px 20px;    
+      margin: 8px 0;    
+      display: inline-block;    
+      border: 1px solid #eee;    
+      border-radius: 4px;    
+      box-sizing: border-box; 
+      border-color: #c2c2c2 ;  
+      /* box-shadow: 0 5px 25px rgba(1 1 1/15%);  */
+    }    
+    .formDiv  form input[type=text],input[type=number], select     
+    {    
+      width: 50%;    
+      
+    }    
+        
+    input[type=submit],input[type=button] {    
+      width: 50%;    
+      background-color: #994199;    
+      color:white;    
+      padding: 14px 20px;    
+      margin: 8px 0;    
+      border: none;    
+      border-radius: 4px;    
+      cursor: pointer; 
+      border-color: #c2c2c2  ;
+      /* box-shadow: 0 5px 25px rgba(1 1 1/15%);   */
+    }    
+        
+    input[type=submit]:hover {    
+      background-color: #994199;    
+    }    
+    .showError{    
+      border-color: #c2c2c2 !important;    
+      color: #a94442 !important;    
+      /* margin-bottom: 15px;     */
+    }
+
+.childInfo{
+    text-align: center;
+}
+.divinfo2{
+    width:50%;
+    text-align: center;
+    margin:auto;
+}
+.name{
+    width:70% !important;
+}
+.age{
+    width:30% !important;
+}
