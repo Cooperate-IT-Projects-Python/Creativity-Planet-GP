@@ -21,6 +21,12 @@
 ---------------------------------------------------------------
 [CPA Requirement](https://www.canva.com/design/DAFazR_M5SE/J_Lfdkqo6qr81Uei6TaXIQ/edit?analyticsCorrelationId=5a36b1e3-60cb-44d3-9930-43aa95eed002)
 ---------------------------------------------------------------
+[UI](https://www.figma.com/file/dbEkc8H1gNBvvHBA4mrKNn/CPA-UI-UX?node-id=0-1&t=awINh0Swhai6Hdei-0)
+---------------------------------------------------------------
+[UX](https://www.figma.com/file/Vj134jfuObmPGupFrDMMss/CPA-WireFrame?node-id=0%3A1&t=7aYTif6yQfMh48YP-1)
+---------------------------------------------------------------
+[persona](https://www.canva.com/design/DAFfFoWnyLU/ku3728RfFDDVzcnmTHZQcA/edit)
+
 
 ## How to run back end 
 ---------------------------------------------------------------
