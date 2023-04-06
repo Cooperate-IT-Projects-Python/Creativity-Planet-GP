@@ -15,9 +15,9 @@
 
 ---------------------------------------------------------------
 
-[CPA V1 Class Diagram](https://drive.google.com/file/d/1znJnYsY7mkQ5o-tMb9PzNvIRMI27BI_6/view?ts=64090a98)
+[Modeling Diagrams](https://lucid.app/lucidchart/a1ae2cb1-40f4-4018-a223-a5d8cdca7099/edit?invitationId=inv_a3846147-6c3b-4fe6-baac-58bad2ee657c&page=S-nEZVAJDPnr#)
 ---------------------------------------------------------------
-[Business Content](https://docs.google.com/presentation/d/1pdRQUolEDpE6DXQAHM8NU086VHCBWT2r9ClO3Vg6-cU/edit#slide=id.p)
+[Business Content](https://www.canva.com/design/DAFazR_M5SE/J_Lfdkqo6qr81Uei6TaXIQ/edit?analyticsCorrelationId=9b646349-2418-410c-8d53-cfb41519a6b7)
 ---------------------------------------------------------------
 [CPA Requirement](https://www.canva.com/design/DAFazR_M5SE/J_Lfdkqo6qr81Uei6TaXIQ/edit?analyticsCorrelationId=5a36b1e3-60cb-44d3-9930-43aa95eed002)
 ---------------------------------------------------------------
@@ -25,8 +25,9 @@
 ---------------------------------------------------------------
 [UX](https://www.figma.com/file/Vj134jfuObmPGupFrDMMss/CPA-WireFrame?node-id=0%3A1&t=7aYTif6yQfMh48YP-1)
 ---------------------------------------------------------------
-[persona](https://www.canva.com/design/DAFfFoWnyLU/ku3728RfFDDVzcnmTHZQcA/edit)
-
+[persona](https://www.canva.com/design/DAFfFoWnyLU/ku3728RfFDDVzcnmTHZQcA/edit?utm_source=shareButton&utm_medium=email&utm_campaign=designshare)
+---------------------------------------------------------------
+[Trello Bord](https://trello.com/b/43jgRfaH/creativity-planet-academy)
 
 ## How to run back end 
 ---------------------------------------------------------------
